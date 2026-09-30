@@ -1,0 +1,34 @@
+modLoader="javafml"
+loaderVersion="[2,)"
+license="MIT"
+
+[[mods]]
+modId="bettercombat_vanillas"
+version="${mod_version}"
+displayName="Better Combat Vanillas"
+displayTest="IGNORE_SERVER_VERSION"
+description='''Removes selected vanilla items from the server-synced Better Combat weapon registry.'''
+
+[[mixins]]
+config="bettercombat_vanillas.mixins.json"
+
+[[dependencies.bettercombat_vanillas]]
+modId="neoforge"
+type="required"
+versionRange="[21.1.225,)"
+ordering="NONE"
+side="SERVER"
+
+[[dependencies.bettercombat_vanillas]]
+modId="minecraft"
+type="required"
+versionRange="[1.21.1]"
+ordering="NONE"
+side="SERVER"
+
+[[dependencies.bettercombat_vanillas]]
+modId="bettercombat"
+type="required"
+versionRange="[2.4.0,)"
+ordering="AFTER"
+side="SERVER"

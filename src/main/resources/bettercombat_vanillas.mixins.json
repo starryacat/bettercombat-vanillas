@@ -1,0 +1,13 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "dev.starryacat.bettercombatvanillas.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "BetterCombatModMixin",
+    "WeaponRegistryAccessor"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

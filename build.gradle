@@ -1,0 +1,60 @@
+plugins {
+    id 'java'
+    id 'net.neoforged.moddev' version '2.0.141'
+}
+
+version = mod_version
+group = mod_group_id
+
+base {
+    archivesName = mod_id
+}
+
+java.toolchain.languageVersion = JavaLanguageVersion.of(21)
+
+neoForge {
+    version = neo_version
+
+    runs {
+        server {
+            server()
+            programArgument '--nogui'
+        }
+    }
+
+    mods {
+        "${mod_id}" {
+            sourceSet(sourceSets.main)
+        }
+    }
+}
+
+repositories {
+    exclusiveContent {
+        forRepository {
+            maven {
+                name = 'Modrinth'
+                url = 'https://api.modrinth.com/maven'
+            }
+        }
+        filter {
+            includeGroup 'maven.modrinth'
+        }
+    }
+}
+
+dependencies {
+    // Better Combat is supplied by the server at runtime and is never bundled.
+    compileOnly 'maven.modrinth:5sy6g3kz:VhIOvcXP'
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+}
+
+tasks.named('processResources', ProcessResources).configure {
+    inputs.property 'mod_version', mod_version
+    filesMatching('META-INF/neoforge.mods.toml') {
+        expand mod_version: mod_version
+    }
+}
